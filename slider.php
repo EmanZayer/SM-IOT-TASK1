@@ -14,7 +14,7 @@
     $Engine6 = $_POST['Engine6'];
     
     // DB Connecting
-    $conn = new mysqli($servernam,$db_name, $username, $password );
+    $conn = new mysqli($servernam,$username, $password,$db_name);
     
     // Check connection
     if ($conn->connect_error) {
@@ -32,11 +32,11 @@
         $sql = "";
     
         $sql = "SELECT * FROM `eng_rob`;";
-        $rs = mysqli($con, $sql);
+        $rs = mysqli_query($conn, $sql);
     
         $sql  = "INSERT INTO eng_rob (Engine1, Engine2, Engine3, Engine4, Engine5, Engine6) 
-        VALUES ('$Engine1', '$Engine2', '$Engine3', '$Engine4', '$Engine5', $Engine6)";
-        $rs = mysqli($con, $sql);
+        VALUES ('$Engine1', '$Engine2', '$Engine3', '$Engine4', '$Engine5', '$Engine6')";
+        $rs = mysqli_query($conn, $sql);
         if($rs)
         {
             echo "Movement Save Successfuly ";
@@ -54,7 +54,7 @@
             $rs = mysqli($con, $sql);
         
             $sql  = "INSERT INTO run_on VALUES (1)";
-            $rs = mysqliy($con, $sql);
+            $rs = mysqliy($conn, $sql);
             if($rs2)
             {
                 echo "Run complete";
